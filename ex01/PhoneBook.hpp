@@ -9,10 +9,15 @@ public:
 	PhoneBook();
 	~PhoneBook();
 	void deleteContacts();
+	void addContact(Contact *contact);
 
 private:
 
-	Contact contacts[8];
+	Contact *contacts[8];
+	int contactPos;
+	int totalContacts;
+
+	int	nextContactPos();
 };
 
 #endif

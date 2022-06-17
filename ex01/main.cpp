@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "Contact.hpp"
+#include "PhoneBook.hpp"
 
 bool startsWith(const char *arr, const char *string)
 {
@@ -16,21 +16,20 @@ bool startsWith(const char *arr, const char *string)
 	return true;
 }
 
-bool	add(const char *arr){
+bool	add(const char *arr, PhoneBook& phoneBook) {
 	if (!startsWith(arr, "ADD"))
 		return false;
-	Contact *c = new Contact("John", "Doe", "Johny", "999", "Is not a real person");
-	delete c;
+	phoneBook.addContact(new Contact("John", "Doe", "Johny", "999", "Is not a real person"));
 	return true;
 }
 
-bool	search(const char *arr){
+bool	search(const char *arr, PhoneBook& phoneBook) {
 	if (!startsWith(arr, "SEARCH"))
 		return false;
 	return true;
 }
 
-bool	exit(const char *arr){
+bool	exit(const char *arr, PhoneBook& phoneBook) {
 	if (!startsWith(arr, "EXIT"))
 		return false;
 	if (strlen(arr) > 4)
@@ -39,21 +38,22 @@ bool	exit(const char *arr){
 }
 
 int main() {
+	PhoneBook *p = new PhoneBook();
 	for (std::string line; std::getline(std::cin, line);) {
 		std::string tmp;
 		switch (*line.c_str()) {
 			case 'A': {
-				if (!add(line.c_str()))
+				if (!add(line.c_str(), *p))
 					std::cout << "Invalid command" << std::endl;
 				break;
 			}
 			case 'S': {
-				if(!search(line.c_str()))
+				if(!search(line.c_str(), *p))
 					std::cout << "Invalid command" << std::endl;
 				break;
 			}
 			case 'E': {
-				if (exit(line.c_str()))
+				if (exit(line.c_str(), *p))
 					return (0);
 				std::cout << "Invalid command" << std::endl;
 				break;

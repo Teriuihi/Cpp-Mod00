@@ -15,7 +15,6 @@ Contact::~Contact() {
 	std::cout << "Destroyed contact." << std::endl;
 }
 
-std::ostream &operator<<(std::ostream &os, const Contact& c) {
-	os << c.firstName << c.lastName << c.nickName << c.phoneNumber;
-	return os;
+void Contact::rem() {
+	delete this;
 }
