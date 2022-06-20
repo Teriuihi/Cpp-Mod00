@@ -28,12 +28,16 @@ void Contact::display(int index) {
 }
 
 void Contact::printAligned(const std::string& str) {
-	int strLen = str.length();
-
+	int strLen = str.size();
 	if (strLen < 10) {
-		for (int i = 0; i != 10; i++) {
+		for (int i = strLen; i != 10; i++) {
 			std::cout << ' ';
 		}
+		std::cout << str;
+	} else if (strLen == 10) {
+		std::cout << str;
+	} else {
+		std::cout << str.substr(0, 9) << ".";
 	}
-	std::cout << str << "|";;
+	std::cout << "|";
 }

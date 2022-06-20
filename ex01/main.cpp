@@ -18,6 +18,7 @@ bool	add(const char *arr, PhoneBook& phoneBook) {
 	std::string request[5] = {"First Name: ", "Last Name: ", "Nick Name: ", "Phone Number: ", "Darkest Secret: "};
 	std::string strings[5];
 	std::string line;
+
 	if (!equals(arr, "ADD"))
 		return false;
 	int pos = 0;
@@ -33,9 +34,22 @@ bool	add(const char *arr, PhoneBook& phoneBook) {
 }
 
 bool	search(const char *arr, PhoneBook& phoneBook) {
+	std::string line;
+
 	if (!equals(arr, "SEARCH"))
 		return false;
 	phoneBook.displayContacts();
+	while (true) {
+		std::getline(std::cin, line);
+		if (line.empty())
+			continue;
+		if (line.length() != 1)
+			continue;
+		//TODO get char at pos 0
+		//TODO convert to int the c way
+		//TODO check if that's a valid index if no error properly
+		//TODO if valid return the search result one field per line
+	}
 	return true;
 }
 

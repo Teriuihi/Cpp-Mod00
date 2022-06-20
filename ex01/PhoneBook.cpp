@@ -1,7 +1,7 @@
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook() {
-	contactPos = 0;
+	contactPos = 7;
 	totalContacts = 0;
 	contacts = new Contact*[8];
 }
@@ -15,7 +15,6 @@ void PhoneBook::addContact(Contact *contact) {
 		totalContacts++;
 	int i = nextContactPos();
 	contacts[i] = contact;
-	Contact contact1 = *contacts[i];
 }
 
 void PhoneBook::deleteContacts() {
@@ -37,8 +36,8 @@ void PhoneBook::displayContacts() {
 	if (totalContacts == 0)
 		return;
 	for (int i = 0; i <= totalContacts - 1; i++) {
-		std::cout << totalContacts << " " << i;
 		contacts[i]->display(i);
+		std::cout << std::endl;
 	}
 }
 
