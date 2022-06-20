@@ -17,9 +17,20 @@ bool startsWith(const char *arr, const char *string)
 }
 
 bool	add(const char *arr, PhoneBook& phoneBook) {
+	std::string request[5] = {"First Name: ", "Last Name: ", "Nick Name: ", "Phone Number: ", "Darkest Secret: "};
+	std::string strings[5];
+	std::string line;
 	if (!startsWith(arr, "ADD"))
 		return false;
-	phoneBook.addContact(new Contact("John", "Doe", "Johny", "999", "Is not a real person"));
+	int pos = 0;
+	while (pos != 5) {
+		std::cout << request[pos];
+		std::getline(std::cin, line);
+		if (line.empty())
+			continue;
+		strings[pos++] = line;
+	}
+	phoneBook.addContact(new Contact(strings[0], strings[1], strings[2], strings[3], strings[4]));
 	return true;
 }
 

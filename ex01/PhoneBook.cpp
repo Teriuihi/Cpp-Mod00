@@ -3,6 +3,7 @@
 PhoneBook::PhoneBook() {
 	contactPos = 0;
 	totalContacts = 0;
+	contacts = new Contact*[8];
 }
 
 PhoneBook::~PhoneBook() {
@@ -12,7 +13,7 @@ PhoneBook::~PhoneBook() {
 void PhoneBook::addContact(Contact *contact) {
 	if (totalContacts != 8)
 		totalContacts++;
-	*contacts[nextContactPos()] = *contact;
+	contacts[nextContactPos()] = contact;
 }
 
 void PhoneBook::deleteContacts() {

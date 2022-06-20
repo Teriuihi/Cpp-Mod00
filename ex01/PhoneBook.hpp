@@ -13,7 +13,7 @@ public:
 
 private:
 
-	Contact *contacts[8];
+	Contact **contacts;
 	int contactPos;
 	int totalContacts;
 
