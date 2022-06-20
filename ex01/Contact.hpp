@@ -8,6 +8,7 @@ public:
 	Contact(const std::string& firstName, const std::string& lastName, const std::string& nickName, const std::string& phoneNumber, const std::string& darkestSecret);
 	~Contact();
 	void rem();
+	void display(int index);
 
 private:
 	std::string firstName;
@@ -15,6 +16,8 @@ private:
 	std::string nickName;
 	std::string phoneNumber;
 	std::string darkestSecret;
+	static void printAligned(const std::string& str);
 };
+
 
 #endif

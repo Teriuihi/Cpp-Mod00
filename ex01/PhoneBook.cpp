@@ -13,7 +13,9 @@ PhoneBook::~PhoneBook() {
 void PhoneBook::addContact(Contact *contact) {
 	if (totalContacts != 8)
 		totalContacts++;
-	contacts[nextContactPos()] = contact;
+	int i = nextContactPos();
+	contacts[i] = contact;
+	Contact contact1 = *contacts[i];
 }
 
 void PhoneBook::deleteContacts() {
@@ -29,5 +31,14 @@ int PhoneBook::nextContactPos() {
 	if (totalContacts == 8)
 		contacts[contactPos]->rem();
 	return contactPos;
+}
+
+void PhoneBook::displayContacts() {
+	if (totalContacts == 0)
+		return;
+	for (int i = 0; i <= totalContacts - 1; i++) {
+		std::cout << totalContacts << " " << i;
+		contacts[i]->display(i);
+	}
 }
 

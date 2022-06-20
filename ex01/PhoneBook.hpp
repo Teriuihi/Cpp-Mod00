@@ -10,6 +10,7 @@ public:
 	~PhoneBook();
 	void deleteContacts();
 	void addContact(Contact *contact);
+	void displayContacts();
 
 private:
 

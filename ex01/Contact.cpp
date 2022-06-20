@@ -18,3 +18,22 @@ Contact::~Contact() {
 void Contact::rem() {
 	delete this;
 }
+
+void Contact::display(int index) {
+	std::cout << "|";
+	printAligned(std::to_string(index));
+	printAligned(firstName);
+	printAligned(lastName);
+	printAligned(nickName);
+}
+
+void Contact::printAligned(const std::string& str) {
+	int strLen = str.length();
+
+	if (strLen < 10) {
+		for (int i = 0; i != 10; i++) {
+			std::cout << ' ';
+		}
+	}
+	std::cout << str << "|";;
+}

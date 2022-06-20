@@ -2,25 +2,23 @@
 #include <string>
 #include "PhoneBook.hpp"
 
-bool startsWith(const char *arr, const char *string)
+bool equals(const char *arr, const char *string)
 {
 	while (*arr && *string) {
 		if (*arr != *string) {
 			return false;
 		}
-		if (*arr == ' ')
-			return true;
 		arr++;
 		string++;
 	}
-	return true;
+	return *arr == *string;
 }
 
 bool	add(const char *arr, PhoneBook& phoneBook) {
 	std::string request[5] = {"First Name: ", "Last Name: ", "Nick Name: ", "Phone Number: ", "Darkest Secret: "};
 	std::string strings[5];
 	std::string line;
-	if (!startsWith(arr, "ADD"))
+	if (!equals(arr, "ADD"))
 		return false;
 	int pos = 0;
 	while (pos != 5) {
@@ -35,13 +33,14 @@ bool	add(const char *arr, PhoneBook& phoneBook) {
 }
 
 bool	search(const char *arr, PhoneBook& phoneBook) {
-	if (!startsWith(arr, "SEARCH"))
+	if (!equals(arr, "SEARCH"))
 		return false;
+	phoneBook.displayContacts();
 	return true;
 }
 
 bool	exit(const char *arr, PhoneBook& phoneBook) {
-	if (!startsWith(arr, "EXIT"))
+	if (!equals(arr, "EXIT"))
 		return false;
 	if (strlen(arr) > 4)
 		return false;
