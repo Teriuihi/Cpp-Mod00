@@ -1,7 +1,7 @@
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook() {
-	contactPos = 7;
+	contactPos = -1;
 	totalContacts = 0;
 	contacts = new Contact*[8];
 }
@@ -18,12 +18,15 @@ void PhoneBook::addContact(Contact *contact) {
 }
 
 void PhoneBook::deleteContacts() {
-	contactPos = 0;
-	totalContacts = 0;
+	if (totalContacts == 0)
+		return;
+	for (int i = 0; i <= totalContacts - 1; i++) {
+		contacts[i]->rem();
+	}
 }
 
 int PhoneBook::nextContactPos() {
-	if (contactPos == 7)
+	if (contactPos == 7 || contactPos == -1)
 		contactPos = 0;
 	else
 		++contactPos;
@@ -39,5 +42,13 @@ void PhoneBook::displayContacts() {
 		contacts[i]->display(i);
 		std::cout << std::endl;
 	}
+}
+
+void PhoneBook::displayContact(int index) {
+	if (index > contactPos) {
+		std::cout << "Invalid contact, ending search." << std::endl;
+		return;
+	}
+	contacts[index]->display();
 }
 

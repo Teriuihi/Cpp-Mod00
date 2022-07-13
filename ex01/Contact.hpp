@@ -9,6 +9,7 @@ public:
 	~Contact();
 	void rem();
 	void display(int index);
+	void display();
 
 private:
 	std::string firstName;

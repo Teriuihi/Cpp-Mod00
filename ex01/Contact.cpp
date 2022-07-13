@@ -27,6 +27,14 @@ void Contact::display(int index) {
 	printAligned(nickName);
 }
 
+void Contact::display() {
+	std::cout << "First name: " << firstName << std::endl;
+	std::cout << "Last name: " << lastName << std::endl;
+	std::cout << "Nick name: " << nickName << std::endl;
+	std::cout << "Phone number: " << phoneNumber << std::endl;
+	std::cout << "Darkest secret: " << darkestSecret << std::endl;
+}
+
 void Contact::printAligned(const std::string& str) {
 	int strLen = str.size();
 	if (strLen < 10) {

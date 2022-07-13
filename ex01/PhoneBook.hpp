@@ -11,6 +11,7 @@ public:
 	void deleteContacts();
 	void addContact(Contact *contact);
 	void displayContacts();
+	void displayContact(int index);
 
 private:
 

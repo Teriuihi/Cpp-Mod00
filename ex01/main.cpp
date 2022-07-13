@@ -39,17 +39,18 @@ bool	search(const char *arr, PhoneBook& phoneBook) {
 	if (!equals(arr, "SEARCH"))
 		return false;
 	phoneBook.displayContacts();
-	while (true) {
-		std::getline(std::cin, line);
-		if (line.empty())
-			continue;
-		if (line.length() != 1)
-			continue;
-		//TODO get char at pos 0
-		//TODO convert to int the c way
-		//TODO check if that's a valid index if no error properly
-		//TODO if valid return the search result one field per line
-	}
+//	while (true) {
+//		std::getline(std::cin, line);
+//		if (line.empty())
+//			continue;
+//		if (line.length() != 1)
+//			continue;
+//		//TODO get char at pos 0
+//		//TODO convert to int the c way
+//		//TODO check if that's a valid index if no error properly
+//		//TODO if valid return the search result one field per line
+//	}
+	std::cout << "Select contact using index: ";
 	return true;
 }
 
@@ -58,11 +59,13 @@ bool	exit(const char *arr, PhoneBook& phoneBook) {
 		return false;
 	if (strlen(arr) > 4)
 		return false;
+	phoneBook.deleteContacts();
 	return true;
 }
 
 int main() {
 	PhoneBook *p = new PhoneBook();
+	bool searchActive = false;
 	for (std::string line; std::getline(std::cin, line);) {
 		std::string tmp;
 		switch (*line.c_str()) {
@@ -72,8 +75,9 @@ int main() {
 				break;
 			}
 			case 'S': {
-				if(!search(line.c_str(), *p))
+				if (!search(line.c_str(), *p))
 					std::cout << "Invalid command" << std::endl;
+				searchActive = true;
 				break;
 			}
 			case 'E': {
@@ -83,7 +87,21 @@ int main() {
 				break;
 			}
 			default: {
-				std::cout << "Invalid command" << std::endl;
+				if (!searchActive) {
+					std::cout << "Invalid command" << std::endl;
+					break;
+				}
+				searchActive = false;
+				if (line.length() != 1) {
+					std::cout << "Invalid input (" << line << "), exiting search" << std::endl;
+					break;
+				}
+				int index = std::stoi(line);
+				if (index < 0 || index > 8) {
+					std::cout << "Invalid input (" << line << "), exiting search" << std::endl;
+					break;
+				}
+				p->displayContact(index);
 				break;
 			}
 		}
