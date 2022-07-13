@@ -3,7 +3,7 @@ CC=gcc
 CFLAGS=-Wall -Wextra -Werror -std=c++98
 RM=rm -f
 
-FILES=Main.cpp
+FILES=megaphone.cpp
 FILES_OBJ=$(FILES:%.cpp=%.o)
 
 all: $(NAME)
