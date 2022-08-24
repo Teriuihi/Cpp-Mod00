@@ -1,5 +1,6 @@
 #include <iostream>
 #include "PhoneBook.hpp"
+#include <cstring>
 
 bool equals(const char *arr, const char *string)
 {
@@ -53,7 +54,6 @@ int main() {
 	PhoneBook p;
 	bool searchActive = false;
 	for (std::string line; std::getline(std::cin, line);) {
-		std::string tmp;
 		switch (*line.c_str()) {
 			case 'A': {
 				if (!add(line.c_str(), p))
