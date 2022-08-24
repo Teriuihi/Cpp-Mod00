@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include "PhoneBook.hpp"
 
 bool equals(const char *arr, const char *string)
@@ -34,22 +33,9 @@ bool	add(const char *arr, PhoneBook& phoneBook) {
 }
 
 bool	search(const char *arr, PhoneBook& phoneBook) {
-	std::string line;
-
 	if (!equals(arr, "SEARCH"))
 		return false;
 	phoneBook.displayContacts();
-//	while (true) {
-//		std::getline(std::cin, line);
-//		if (line.empty())
-//			continue;
-//		if (line.length() != 1)
-//			continue;
-//		//TODO get char at pos 0
-//		//TODO convert to int the c way
-//		//TODO check if that's a valid index if no error properly
-//		//TODO if valid return the search result one field per line
-//	}
 	std::cout << "Select contact using index: ";
 	return true;
 }
@@ -64,24 +50,24 @@ bool	exit(const char *arr, PhoneBook& phoneBook) {
 }
 
 int main() {
-	PhoneBook *p = new PhoneBook();
+	PhoneBook p;
 	bool searchActive = false;
 	for (std::string line; std::getline(std::cin, line);) {
 		std::string tmp;
 		switch (*line.c_str()) {
 			case 'A': {
-				if (!add(line.c_str(), *p))
+				if (!add(line.c_str(), p))
 					std::cout << "Invalid command" << std::endl;
 				break;
 			}
 			case 'S': {
-				if (!search(line.c_str(), *p))
+				if (!search(line.c_str(), p))
 					std::cout << "Invalid command" << std::endl;
 				searchActive = true;
 				break;
 			}
 			case 'E': {
-				if (exit(line.c_str(), *p))
+				if (exit(line.c_str(), p))
 					return (0);
 				std::cout << "Invalid command" << std::endl;
 				break;
@@ -101,7 +87,7 @@ int main() {
 					std::cout << "Invalid input (" << line << "), exiting search" << std::endl;
 					break;
 				}
-				p->displayContact(index);
+				p.displayContact(index);
 				break;
 			}
 		}

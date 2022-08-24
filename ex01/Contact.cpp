@@ -1,4 +1,8 @@
 #include "Contact.hpp"
+#include <sstream>
+
+//Proper c++ would be using c++11 or later, but we're stuck using this thanks
+#define SSTR( x ) static_cast< std::ostringstream & >( ( std::ostringstream() << std::dec << x ) ).str()
 
 Contact::Contact(const std::string& firstName, const std::string& lastName,
 				 const std::string& nickName, const std::string& phoneNumber, const std::string& darkestSecret)
@@ -21,7 +25,7 @@ void Contact::rem() {
 
 void Contact::display(int index) {
 	std::cout << "|";
-	printAligned(std::to_string(index));
+	printAligned(SSTR(index));
 	printAligned(firstName);
 	printAligned(lastName);
 	printAligned(nickName);

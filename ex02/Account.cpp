@@ -1,7 +1,10 @@
 #include "Account.hpp"
 #include <string>
 #include <iostream>
-#include <ctime>
+#include <sstream>
+
+//Proper c++ would be using c++11 or later, but we're stuck using this thanks
+#define SSTR( x ) static_cast< std::ostringstream & >( ( std::ostringstream() << std::dec << x ) ).str()
 
 int	Account::_nbAccounts = 0;
 int	Account::_totalAmount = 0;
@@ -12,15 +15,14 @@ std::string get_timeStamp() {
 	std::string tmp;
 	time_t now = time(nullptr);
 	tm *tm = localtime(&now);
-	tmp = std::to_string(tm->tm_year + 1900); //tm_year is year since 1900 so add 1900 to get real year
-	if (tm->tm_mon < 10)
-		tmp += "0";
-	tmp += std::to_string(tm->tm_mon);
-	tmp += std::to_string(tm->tm_mday);
-	tmp += "_";
-	tmp += std::to_string(tm->tm_hour);
-	tmp += std::to_string(tm->tm_min);
-	tmp += std::to_string(tm->tm_sec);
+	tmp = SSTR((tm->tm_year + 1900)
+			<< ((tm->tm_mon + 1) < 10 ? "0" : "")
+			<< (tm->tm_mon + 1)
+			<< tm->tm_mday
+			<< "_"
+			<< tm->tm_hour
+			<< tm->tm_min
+			<< tm->tm_sec);
 	return tmp;
 }
 
